@@ -13,7 +13,7 @@ services:
       mongod
 
   e-champ-install:
-    build: ./e-champ-server
+    build: ../e-champ-server
     image: e-champ-server
     environment:
       - MONGO_HOST=mongo
@@ -21,21 +21,21 @@ services:
     depends_on:
       - mongo
     command:
-       node console/install
+       node console/install --config demo
 
-  blog-install:
-    build: ./evado-app-blog
-    image: evado-app-blog
+  party-en-install:
+    build: ../party-en
+    image: party-en
     environment:
       - MONGO_HOST=mongo
       - WAIT_HOSTS=mongo:27017
     depends_on:
       - mongo
     command:
-       node console/install
+       node console/install --config demo
 
   neural-net-install:
-    build: ./neural-net
+    build: ../neural-net
     image: neural-net
     environment:
       - MONGO_HOST=mongo
@@ -43,37 +43,37 @@ services:
     depends_on:
       - mongo
     command:
-       node console/install
+       node console/install --config demo
 
   e-champ:
     image: e-champ-server
     ports:
-      - 3000:3000
+      - 80:3000
     environment:
       - MONGO_HOST=mongo
     depends_on:
       - mongo
     command:
-       node console/docker
+       node console/docker --config demo --env production
 
-  blog:
-    image: evado-app-blog
+  party-en:
+    image: party-en
     ports:
-      - 3001:3000
+      - 8080:3000
     environment:
       - MONGO_HOST=mongo
     depends_on:
       - mongo
     command:
-       node console/docker
+       node console/docker --config demo --env production
 
   neural-net:
     image: neural-net
     ports:
-      - 3002:3000
+      - 8081:3000
     environment:
       - MONGO_HOST=mongo
     depends_on:
       - mongo
     command:
-       node console/docker
+       node console/docker --config demo --env production

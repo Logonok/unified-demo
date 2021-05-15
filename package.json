@@ -1,0 +1,12 @@
+{
+  "name": "unified-demo",
+  "version": "1.0.0",
+  "description": "Unified demo configuration",
+  "author": "Logonok",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Logonok/unified-demo.git"
+  },
+  "dependencies": {}
+}
